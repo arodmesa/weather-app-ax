@@ -121,6 +121,10 @@ function App() {
                 cards=document.getElementById('cards');
                 cards.classList.remove('centrar');
               }
+              else{
+                cards=document.getElementById('cards');
+                cards.classList.add('centrar');
+              }
               return temp;
             })
           break;
@@ -133,7 +137,7 @@ function App() {
     }
   //
   let city_cards;  
-  city_cards= ciudades.map((ciudad,index)=>{
+  city_cards= ciudades.reverse().map((ciudad,index)=>{
      return(
        <WeatherObj ciudad={ciudad[Object.keys(ciudad)[0]]} key={index} handleButtons={handleButtons} /> //se pasan los datos de la ciudad actual
      );
