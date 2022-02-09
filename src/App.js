@@ -76,7 +76,7 @@ function App() {
             setCiudades((prev_cities)=>{
               let temp= prev_cities.slice();
               temp.push({[datos.name]: obj});
-              return temp;
+              return temp.reverse();
             });   
             setShow(false);
             setSearch('');
@@ -137,7 +137,7 @@ function App() {
     }
   //
   let city_cards;  
-  city_cards= ciudades.reverse().map((ciudad,index)=>{
+  city_cards= ciudades.map((ciudad,index)=>{
      return(
        <WeatherObj ciudad={ciudad[Object.keys(ciudad)[0]]} key={index} handleButtons={handleButtons} /> //se pasan los datos de la ciudad actual
      );
