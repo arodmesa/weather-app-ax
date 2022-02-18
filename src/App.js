@@ -62,14 +62,19 @@ function App() {
             
           }); 
           if (bit){
-            let f_hora=new Date(datos.dt*1000-(datos.timezone*1000));
+            let d=new Date();
+            let localTime=d.getTime();
+            let localOffset=d.getTimezoneOffset() *60000;
+            let utc = localTime + localOffset;
+            let city_time= utc + (1000* datos.timezone);
+            let f_hora=new Date (city_time);
             let week_day=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];     
             let obj={
               main_weather:datos.weather[0].main,
               icono:`${datos.weather[0].icon}.png`,
               temperatura:`${(datos.main.temp-273.15).toFixed(1)}°C`,
               viento:`${datos.wind.speed} m/s`,
-              hora:`${week_day[f_hora.getDay()]}, ${f_hora.getHours()}:${f_hora.getMinutes()}, GTM -5`,
+              hora:`${week_day[f_hora.getDay()]}, ${f_hora.getHours()}:${(f_hora.getMinutes()<10)?'0':''}${f_hora.getMinutes()}`,
               humedad: `${datos.main.humidity}%`,
               nombre: datos.name
             };
